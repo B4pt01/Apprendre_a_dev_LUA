@@ -92,6 +92,10 @@ end`, false, 'shared/side.lua'),
       p('source est l’id serveur du joueur dans un event (1, 2, 3…). Ce n’est pas un identifiant persistant : au reboot il change. Pour la DB, utilise license: / fivem: via GetPlayerIdentifiers.'),
       callout('diff', 'Pas d’Instance', 'Un ped est un handle number. S’il despawn, le number peut être réutilisé. Valide DoesEntityExist. Roblox : objets GC. FiveM : handles C.'),
     ],
+    quiz: [
+      q('sd1', 'source est…', ['la licence Rockstar', 'l’id de session, instable au reboot', 'un netId ped'], 1, 'DB = identifiers.'),
+      q('sd2', 'IsDuplicityVersion() true signifie…', ['client', 'serveur', 'NUI'], 1, 'Duplicity = server in FX terms.'),
+    ],
   }),
   lesson({
     id: 'fivem-events',
@@ -189,6 +193,10 @@ end)`, false, 'client/point.lua'),
         ],
       ),
     ],
+    quiz: [
+      q('th1', 'while true sans Wait…', ['dessine plus vite', 'gèle le thread', 'vaut Wait(0)'], 1, 'Le scheduler ne reprend jamais.'),
+      q('th2', 'sleep dynamique (1000 vs 0)…', ['est du micro-opt inutile', 'évite de DrawMarker à l’autre bout de la map', 'casse OneSync'], 1, 'Wait(0) seulement près du point.'),
+    ],
   }),
   lesson({
     id: 'fivem-nui',
@@ -283,6 +291,10 @@ Config.Shop = {
 Config.InteractDistance = 2.0`, false, 'config.lua'),
       p('Le client peut dumper Config. Les prix affichés sont cosmétique : le serveur relit SA copie (même shared_script, mais revalide). Les credentials MySQL sont dans server.cfg (set mysql_connection_string), jamais dans un script client.'),
     ],
+    quiz: [
+      q('cf1', 'mysql_connection_string va dans…', ['client.lua', 'server.cfg (convar)', 'nui/index.html'], 1, 'Jamais dumpable par un joueur.'),
+      q('cf2', 'Config.Shop.price côté client…', ['est la vérité', 'est de l’UI, le serveur recoupe', 'est chiffré par FiveM'], 1, 'Shared ≠ trusted.'),
+    ],
   }),
   lesson({
     id: 'fivem-esx',
@@ -367,6 +379,10 @@ exports.ox_inventory:AddItem(source, 'bread', 1)
 -- ou
 -- if not exports.ox_inventory:RemoveItem(source, 'cash', 12) then return end`, false, 'server/ox_inv.lua'),
       callout('tip', 'ox_lib points', 'lib.points.new({ coords, distance, nearby }) remplace beaucoup de boucles marker. Moins de Wait(0) = plus de FPS.'),
+    ],
+    quiz: [
+      q('ox1', 'lib.callback.await côté client…', ['écrit dans MySQL', 'attend une réponse serveur', 'remplace fxmanifest'], 1, 'RPC.'),
+      q('ox2', 'ox_inventory:AddItem se fait…', ['dans le NUI JS', 'serveur, avec source', 'dans fxmanifest files'], 1, 'Autorité serveur.'),
     ],
   }),
   lesson({
@@ -501,6 +517,9 @@ end)`, false, 'server/rate.lua'),
       q('fq3', 'Les prix d’un shop dans config.lua client…', ['font foi', 'doivent être revalidés serveur', 'sont chiffrés'], 1, 'Le client est dumpable.'),
       q('fq4', 'RegisterNUICallback doit…', ['ignorer cb', 'appeler cb(...)', 'utiliser io.open'], 1, 'Sinon le fetch pend.'),
       q('fq5', 'CreateVehicle autoritatif…', ['client only', 'de préférence serveur + netId', 'dans le fxmanifest'], 1, 'Anti-dupe.'),
+      q('fq6', 'Un state bag duty…', ['remplace oxmysql', 'réplique un état de session', 'est un identifier'], 1, 'Pas de persistance argent.'),
+      q('fq7', 'Si RemoveItem money réussit et AddItem échoue…', ['le joueur a payé pour rien — rollback', 'c’est normal', 'kick'], 0, 'Atomicité à la main.'),
+      q('fq8', 'exports.atelier_core:GetGold(src) exige…', ['NUI focus', 'la ressource started', 'LuaJIT'], 1, 'GetResourceState.'),
     ],
   }),
 ]

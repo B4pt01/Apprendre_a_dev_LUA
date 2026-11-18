@@ -40,6 +40,35 @@ print(V.new(1, 2) + V.new(3, 4))`,
 end)
 print(ok, err)`,
   },
+  {
+    label: 'Inventaire',
+    code: `local Inv = { __index = {} }
+function Inv.new() return setmetatable({ slots = {} }, Inv) end
+function Inv:add(id, q)
+  self.slots[#self.slots+1] = { id = id, qty = q }
+end
+function Inv:count(id)
+  local n = 0
+  for _, s in ipairs(self.slots) do
+    if s.id == id then n = n + s.qty end
+  end
+  return n
+end
+local bag = Inv.new()
+bag:add("bread", 2)
+print("bread", bag:count("bread"))`,
+  },
+  {
+    label: 'UTF-8',
+    code: `local s = "été"
+print("#", #s, "len", utf8.len(s))`,
+  },
+  {
+    label: 'Bits',
+    code: `local BIND, TRADE = 1, 2
+local flags = BIND | TRADE
+print(flags, flags & TRADE ~= 0)`,
+  },
 ]
 
 export default function PlaygroundPage() {

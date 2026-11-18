@@ -1,6 +1,6 @@
 # Atelier Lua
 
-Cours interactif en français pour apprendre **Lua 5.x**, puis scripter **Roblox (Luau)** et **FiveM**.
+Cours interactif en français pour apprendre **Lua 5.x**, puis scripter **Roblox (Luau)** et **FiveM** (95 leçons, quiz, playground).
 
 Progression, quiz et signets sont stockés dans `localStorage` (aucune base de données).
 

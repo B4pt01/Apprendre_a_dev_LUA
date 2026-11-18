@@ -55,7 +55,11 @@ export default function LessonPage() {
       </div>
       <BlockList blocks={lesson.blocks} />
       {lesson.quiz ? (
-        <Quiz questions={lesson.quiz} onScored={(ratio) => score(lesson.id, ratio)} />
+        <Quiz
+          key={lesson.id}
+          questions={lesson.quiz}
+          onScored={(ratio) => score(lesson.id, ratio)}
+        />
       ) : null}
       <nav className="pager">
         {nav.prev ? (

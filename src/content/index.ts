@@ -4,8 +4,11 @@ import { GLOSSARY } from './glossary'
 import { luaA } from './lessons/lua-a'
 import { luaB } from './lessons/lua-b'
 import { luaC } from './lessons/lua-c'
+import { luaExtra } from './lessons/lua-extra'
 import { robloxLessons } from './lessons/roblox'
+import { robloxExtra } from './lessons/roblox-extra'
 import { fivemLessons } from './lessons/fivem'
+import { fivemExtra } from './lessons/fivem-extra'
 import type { Lesson, TrackId } from './schema'
 
 export { MODULES, TRACKS, CHEATSHEETS, GLOSSARY }
@@ -14,8 +17,11 @@ export const LESSONS: Lesson[] = [
   ...luaA,
   ...luaB,
   ...luaC,
+  ...luaExtra,
   ...robloxLessons,
+  ...robloxExtra,
   ...fivemLessons,
+  ...fivemExtra,
 ]
 
 const byId = new Map(LESSONS.map((l) => [l.id, l]))
@@ -91,6 +97,15 @@ export function searchCourse(raw: string): SearchHit[] {
         title: term.term,
         hint: term.definition,
         href: `/glossaire#${term.id}`,
+      })
+    }
+  }
+  for (const sheet of CHEATSHEETS) {
+    if (sheet.title.toLowerCase().includes(q) || sheet.id.includes(q)) {
+      hits.push({
+        title: sheet.title,
+        hint: 'Mémo',
+        href: `/memos/${sheet.id}`,
       })
     }
   }

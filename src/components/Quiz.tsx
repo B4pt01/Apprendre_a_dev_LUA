@@ -13,10 +13,15 @@ export function Quiz({ questions, onScored }: Props) {
   const correct = questions.filter((q) => picked[q.id] === q.answer).length
   const ratio = questions.length ? correct / questions.length : 0
 
+  function reset() {
+    setPicked({})
+    setDone(false)
+  }
+
   return (
     <section className="quiz" aria-labelledby="quiz-title">
       <h2 id="quiz-title">Quiz de la leçon</h2>
-      <p className="meta-row">Coche une réponse par question, puis valide.</p>
+      <p className="meta-row">Coche une réponse par question, puis valide. 70 % pour valider.</p>
       {questions.map((q, index) => (
         <div key={q.id} style={{ marginTop: 18 }}>
           <p>
@@ -26,6 +31,7 @@ export function Quiz({ questions, onScored }: Props) {
           </p>
           {q.choices.map((choice, i) => {
             let cls = 'choice'
+            if (!done && picked[q.id] === i) cls += ' picked'
             if (done) {
               if (i === q.answer) cls += ' ok'
               else if (picked[q.id] === i) cls += ' bad'
@@ -35,6 +41,7 @@ export function Quiz({ questions, onScored }: Props) {
                 key={choice}
                 type="button"
                 className={cls}
+                aria-pressed={picked[q.id] === i}
                 onClick={() => setPicked((prev) => ({ ...prev, [q.id]: i }))}
                 disabled={done}
               >
@@ -57,6 +64,11 @@ export function Quiz({ questions, onScored }: Props) {
         >
           Valider
         </button>
+        {done ? (
+          <button type="button" className="btn" onClick={reset}>
+            Réessayer
+          </button>
+        ) : null}
         {done ? (
           <p>
             Score : {correct}/{questions.length} ({Math.round(ratio * 100)} %)

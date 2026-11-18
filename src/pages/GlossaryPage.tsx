@@ -1,8 +1,15 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { GLOSSARY } from '../content'
 
 export default function GlossaryPage() {
   const [q, setQ] = useState('')
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.replace('#', ''))
+    if (!id) return
+    window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ block: 'center' })
+    })
+  }, [])
   const terms = useMemo(() => {
     const n = q.trim().toLowerCase()
     return GLOSSARY.filter(

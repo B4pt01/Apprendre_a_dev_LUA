@@ -55,6 +55,10 @@ end
 for v in values({ "eau", "pain" }) do print(v) end`),
       p('Un itérateur stateless reçoit (état, contrôle) comme ipairs. Plus difficile, plus léger. Pour du gameplay, une closure suffit.'),
     ],
+    quiz: [
+      q('ci1', 'Un itérateur custom `for x in f()` s’arrête quand f renvoie…', ['false', 'nil', '0'], 1, 'Premier nil = fin du for générique.'),
+      q('ci2', 'range(3,6) ci-dessus est…', ['stateless', 'une closure avec upvalue', 'une coroutine OS'], 1, 'i est capturé.'),
+    ],
   }),
   lesson({
     id: 'lua-meta-intro',
@@ -159,6 +163,10 @@ rawset(t, "b", 2)
 print(t.b, rawlen(t))`),
       p('Sans rawset dans __newindex, tu récurses à l’infini. En DataStores / serialization, utilise rawget pour éviter d’exécuter du code proxy.'),
     ],
+    quiz: [
+      q('rw1', 'rawget ignore…', ['les clés number', '__index', 'pairs'], 1, 'Lecture brute.'),
+      q('rw2', 'Dans __newindex, écrire avec t[k]=v…', ['est OK', 'récursive souvent', 'supprime la metatable'], 1, 'Réarme __newindex → rawset.'),
+    ],
   }),
   lesson({
     id: 'lua-coro-intro',
@@ -217,6 +225,10 @@ print(nextItem())
 print(nextItem())`),
       callout('game', 'Cinématique', 'Une cutscene Roblox ou une progression de mission FiveM se modèle bien en coroutine : yield jusqu’à ce que le joueur arrive, puis resume. Attention à annuler si le joueur quitte.'),
     ],
+    quiz: [
+      q('cp1', 'coroutine.wrap renvoie…', ['un thread brut', 'une fonction qui relance les erreurs', 'un userdata Roblox'], 1, 'wrap = resume + error si fail.'),
+      q('cp2', 'CreateThread FiveM / task.spawn Luau s’appuient sur…', ['des process OS', 'des coroutines + un scheduler hôte', 'des metatables'], 1, 'Collaboratif, pas preemptif.'),
+    ],
   }),
   lesson({
     id: 'lua-require',
@@ -268,6 +280,10 @@ end
 Inventory:add("eau")
 print(Inventory.items[1])`),
       p('Évite le module global d’avant 5.1. Un module = un return de table, zéro globale.'),
+    ],
+    quiz: [
+      q('ms1', 'Un module Lua idiomatique…', ['écrit dans _G', 'return une table', 'appelle os.exit'], 1, 'Export explicite.'),
+      q('ms2', 'require une 2e fois…', ['réexécute le fichier', 'renvoie le cache package.loaded', 'vide _ENV'], 1, 'Sauf si tu nil le cache.'),
     ],
   }),
   lesson({
@@ -390,6 +406,10 @@ end
 print(Vehicle.new(7, "LUA 404"):desc())`),
       callout('tip', 'Mixins', 'Pour partager Freeze / Log sans héritage profond : copie les fonctions dans la class table. Plus lisible qu’une chaîne de metatables de 6 niveaux.'),
     ],
+    quiz: [
+      q('ih1', 'Vehicle.__index = Vehicle après héritage…', ['est optionnel cosmétique', 'fait retrouver les méthodes Vehicle', 'casse Entity'], 1, 'Sinon les méthodes restent sur Entity seulement.'),
+      q('ih2', 'Un mixin simple…', ['exige 4 metatables', 'copie des fonctions dans la class table', 'utilise goto'], 1, 'Composition > héritage profond.'),
+    ],
   }),
   lesson({
     id: 'lua-io',
@@ -482,6 +502,12 @@ print(select("#", 1, nil, 3))
 local a, b = table.unpack({ 9, 8 })
 print(a, b)`),
       p('tonumber échoue en silence (nil). C’est parfait pour valider un argument d’event : if not tonumber(id) then return end.'),
+      lua(`local function asId(v)
+  local n = tonumber(v)
+  if not n or n % 1 ~= 0 or n <= 0 then return nil end
+  return n
+end
+print(asId("12"), asId("nope"), asId(-3), asId("3.5"))`),
     ],
   }),
   lesson({
@@ -504,6 +530,10 @@ print(a, b)`),
       q('z5', 'pcall sert à…', ['accélérer le GC', 'attraper une error', 'charger un module'], 1, 'Appel protégé.'),
       q('z6', 'Une metatable __index table…', ['interdit la lecture', 'délègue les clés manquantes', 'convertit en JSON'], 1, 'Prototype.'),
       q('z7', 'Luau `continue` dans FiveM…', ['marche toujours', 'est une erreur Lua 5.x', 'vaut break'], 1, 'continue n’existe pas en Lua PUC.'),
+      q('z8', '`1 << 3` (Lua 5.3+)…', ['3', '8', '4'], 1, 'Décalage gauche.'),
+      q('z9', 'utf8.len vs #s…', ['identiques', '#s = octets, utf8.len = codepoints', 'utf8.len est déprécié'], 1, 'Emoji ≠ 1 octet.'),
+      q('z10', 'load() du texte d’un joueur…', ['pratique pour un REPL public', 'une backdoor', 'plus sûr que require'], 1, 'Jamais.'),
+      q('z11', 'table.pack("a", nil, "c").n…', ['2', '3', 'nil'], 1, 'n survit aux trous.'),
     ],
   }),
 ]

@@ -40,8 +40,13 @@ export function Shell() {
         Aller au contenu
       </a>
       <header className="site-header">
-        <button className="icon-btn menu-btn" type="button" onClick={() => setMenu(true)}>
-          Menu
+        <button
+          className="icon-btn menu-btn"
+          type="button"
+          aria-expanded={menu}
+          onClick={() => setMenu((open) => !open)}
+        >
+          {menu ? 'Fermer' : 'Menu'}
         </button>
         <NavLink to="/" className="brand">
           <span className="brand-mark">Lu</span>
@@ -65,6 +70,16 @@ export function Shell() {
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} />
       <div className="layout">
         <aside className={`sidebar${menu ? ' open' : ''}`}>
+          <div className="sidebar-pages">
+            <NavLink to="/parcours">Parcours</NavLink>
+            <NavLink to="/glossaire">Glossaire</NavLink>
+            <NavLink to="/memos">Mémos</NavLink>
+            <NavLink to="/playground">Playground</NavLink>
+            <NavLink to="/comparaison">Luau vs FiveM</NavLink>
+          </div>
+          <div className="progress-chip sidebar-progress">
+            Progression {pct}% · {done}/{total}
+          </div>
           <h2>Cours</h2>
           {TRACKS.map((track) => (
             <div key={track.id}>

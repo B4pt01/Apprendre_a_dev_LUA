@@ -229,6 +229,10 @@ for k, v in pairs(t) do print(k, v) end`),
 end
 print(len({ a = 1, b = 2, 10 }))`),
     ],
+    quiz: [
+      q('tp1', 'ipairs sur {10, 20, nil, 40} affiche…', ['4 valeurs', '2 valeurs (stop au nil)', 'erreur'], 1, 'Premier trou arrête ipairs.'),
+      q('tp2', 'Pour compter toutes les clés d’un record…', ['#t', 'une boucle pairs', 't.length'], 1, '# ignore la partie hash.'),
+    ],
   }),
   lesson({
     id: 'lua-fn-basics',
@@ -375,6 +379,13 @@ end
 print(nth(2, "a", "b", "c"))
 print("count", select("#", "a", nil, "c"))`),
       p('`...` n’est pas une table. Convertis avec table.pack si tu dois stocker, surtout s’il y a des nil au milieu (le champ n compte tout).'),
+      lua(`local packed = table.pack("heal", nil, 3)
+print("n", packed.n, packed[1], packed[2], packed[3])
+print(select("#", table.unpack(packed, 1, packed.n)))`),
+    ],
+    quiz: [
+      q('va1', '`select("#", 1, nil, 3)` vaut…', ['2', '3', '1'], 1, '# compte y compris les nil.'),
+      q('va2', '`...` est…', ['une table cachée', 'une liste de valeurs, pas une table', 'un userdata'], 1, 'table.pack pour matérialiser.'),
     ],
   }),
 ]

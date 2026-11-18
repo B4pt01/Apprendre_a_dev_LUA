@@ -284,6 +284,10 @@ local n = 10
 print(n)`),
       callout('tip', 'do end', 'Sers-t’en pour limiter la durée de vie d’une grosse table temporaire, ou pour un local qui ne doit pas fuir.'),
     ],
+    quiz: [
+      q('sc1', 'Un local déclaré dans un for…', ['existe après le end', 'est local à la boucle', 'est toujours global'], 1, 'Chaque for crée un bloc.'),
+      q('sc2', 'a, b = b, a…', ['a besoin d’un temporaire', 'swap atomique grâce aux multi-assign', 'est une erreur'], 1, 'Le côté droit est évalué d’abord.'),
+    ],
   }),
   lesson({
     id: 'lua-arith',
@@ -364,6 +368,10 @@ print(#t)`),
       p('La précédence : ^ > unaires > * / // % > + - > .. > comparaisons > not > and > or. En cas de doute, parenthèse.'),
       lua(`print(1 + 2 .. 3) -- "33" ? Non : (1+2)..3 => "33"
 print(2 ^ 3 ^ 2) -- 512, associatif à droite`),
+    ],
+    quiz: [
+      q('mo1', '`#"abc"` vaut…', ['2', '3', '4'], 1, '# sur une string = octets.'),
+      q('mo2', '`..` concatène…', ['seulement des tables', 'des strings (et numbers coercés)', 'des fonctions'], 1, 'number est converti, table non.'),
     ],
   }),
   lesson({
@@ -461,6 +469,10 @@ print(string.char(76, 117, 97)) -- Lua`),
         'UTF-8',
         'Lua 5.3+ a utf8.len / utf8.codes. Luau a utf8 aussi. #s reste en octets : "é" peut valoir 2. FiveM chat : pense UTF-8.',
       ),
+    ],
+    quiz: [
+      q('sl1', '`s:sub(1, 3)` équivaut à…', ['string.sub(s, 1, 3)', 's[1][2][3]', 'string.split(s, 3)'], 0, 'Les strings ont une metatable avec __index = string.'),
+      q('sl2', 'Les index négatifs de sub…', ['plantent', 'comptent depuis la fin', 'valent 0'], 1, 'sub(-3) = les 3 derniers octets.'),
     ],
   }),
 ]

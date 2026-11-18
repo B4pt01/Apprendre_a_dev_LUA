@@ -163,6 +163,30 @@ img { max-width: 100%; }
   color: var(--muted);
   font-weight: 700;
 }
+.sidebar-pages {
+  display: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 8px 12px;
+}
+.sidebar-pages a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.sidebar-pages a.active, .sidebar-pages a:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+.sidebar-progress {
+  display: none;
+  margin: 0 8px 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
 .mod {
   margin-bottom: 6px;
 }
@@ -433,6 +457,7 @@ pre {
   cursor: pointer;
 }
 .choice:hover { border-color: var(--lua); }
+.choice.picked { border-color: var(--violet); background: rgba(139, 124, 255, 0.12); }
 .choice.ok { border-color: var(--ok); background: rgba(52, 211, 153, 0.08); }
 .choice.bad { border-color: var(--danger); background: rgba(251, 113, 133, 0.08); }
 .pager {
@@ -548,6 +573,7 @@ pre {
   .brand { white-space: nowrap; font-size: 1rem; }
   .progress-chip { display: none; }
   .search-btn { padding: 8px 10px; }
+  .sidebar-pages, .sidebar-progress { display: flex; }
 }
 
 @media (prefers-reduced-motion: reduce) {
