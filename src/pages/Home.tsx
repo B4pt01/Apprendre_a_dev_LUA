@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       </section>
 
-      <p className="section-label">Trois rails</p>
+      <h2 className="section-title">Trois rails</h2>
       <div className="grid-3">
         {TRACKS.map((t) => (
           <Link key={t.id} to={`/parcours/${t.id}`} className={`card track-${t.id}`}>
@@ -62,7 +62,7 @@ export default function Home() {
         ))}
       </div>
 
-      <p className="section-label">Méthode</p>
+      <h2 className="section-title">Méthode</h2>
       <div className="grid-2">
         <div className="card">
           <h3>Comment travailler</h3>
