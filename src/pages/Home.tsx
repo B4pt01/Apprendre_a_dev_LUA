@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="wide">
       <section className="hero">
-        <div className="kicker">Cours interactif · français</div>
+        <p className="kicker">Cours interactif · français</p>
         <h1>Lua, enfin pour de vrai — Roblox et FiveM.</h1>
         <p className="lede">
           Atelier Lua t’emmène des types jusqu’aux remotes et aux natives. Exemples
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       </section>
 
-      <h2 style={{ fontFamily: 'var(--font-display)', marginTop: 36 }}>Trois rails</h2>
+      <p className="section-label">Trois rails</p>
       <div className="grid-3">
         {TRACKS.map((t) => (
           <Link key={t.id} to={`/parcours/${t.id}`} className={`card track-${t.id}`}>
@@ -62,7 +62,8 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="grid-2" style={{ marginTop: 16 }}>
+      <p className="section-label">Méthode</p>
+      <div className="grid-2">
         <div className="card">
           <h3>Comment travailler</h3>
           <p>

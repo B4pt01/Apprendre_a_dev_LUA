@@ -35,7 +35,7 @@ export function SearchPalette({ open, onClose }: Props) {
       role="presentation"
     >
       <div
-        className="search-box"
+        className="search-box glass"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-label="Recherche du cours"
@@ -69,6 +69,9 @@ export function SearchPalette({ open, onClose }: Props) {
             <div>{hit.hint}</div>
           </button>
         ))}
+        {!q ? (
+          <div className="search-hint">Leçons, glossaire, mémos — Entrée pour ouvrir.</div>
+        ) : null}
         {q && hits.length === 0 ? (
           <div className="search-hit">Aucun résultat.</div>
         ) : null}

@@ -71,8 +71,8 @@ export default function ComparePage() {
 
   return (
     <div>
-      <div className="kicker">Référence</div>
-      <h1 style={{ fontFamily: 'var(--font-display)' }}>Luau vs FiveM vs Lua</h1>
+      <p className="kicker">Référence</p>
+      <h1 className="page-title">Luau vs FiveM vs Lua</h1>
       <p>
         Tu peux suivre les deux tracks. Ce tableau est le pense-bête quand un snippet « ne
         compile pas » : c’est souvent un dialecte, pas Lua.

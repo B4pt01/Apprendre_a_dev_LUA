@@ -22,8 +22,8 @@ export default function GlossaryPage() {
 
   return (
     <div>
-      <div className="kicker">Référence</div>
-      <h1 style={{ fontFamily: 'var(--font-display)' }}>Glossaire</h1>
+      <p className="kicker">Référence</p>
+      <h1 className="page-title">Glossaire</h1>
       <input
         className="editor"
         style={{ minHeight: 0, padding: 12 }}

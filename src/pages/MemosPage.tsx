@@ -7,8 +7,8 @@ export default function MemosPage() {
 
   return (
     <div>
-      <div className="kicker">Référence</div>
-      <h1 style={{ fontFamily: 'var(--font-display)' }}>Mémos</h1>
+      <p className="kicker">Référence</p>
+      <h1 className="page-title">Mémos</h1>
       <div className="hero-actions">
         {CHEATSHEETS.map((s) => (
           <Link key={s.id} className="btn" to={`/memos/${s.id}`}>
@@ -21,7 +21,9 @@ export default function MemosPage() {
       </div>
       {sheets.map((sheet) => (
         <section key={sheet.id} className={`card track-${sheet.track} cheatsheet`} style={{ marginTop: 18 }}>
-          <h2 style={{ fontFamily: 'var(--font-display)' }}>{sheet.title}</h2>
+          <h2 className="page-title" style={{ fontSize: '1.2rem' }}>
+            {sheet.title}
+          </h2>
           {sheet.groups.map((g) => (
             <div className="group" key={g.title}>
               <h3>{g.title}</h3>

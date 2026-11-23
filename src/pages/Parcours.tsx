@@ -10,8 +10,8 @@ export default function Parcours() {
 
   return (
     <div className="wide">
-      <div className="kicker">Parcours</div>
-      <h1 style={{ fontFamily: 'var(--font-display)' }}>La carte du cours</h1>
+      <p className="kicker">Parcours</p>
+      <h1 className="page-title">La carte du cours</h1>
       <p>
         Fondations d’abord, puis un track jeu. Tu peux ouvrir Roblox et FiveM en
         parallèle : les encadrés violets signalent les divergences.
@@ -31,7 +31,9 @@ export default function Parcours() {
       </div>
       {tracks.map((track) => (
         <section key={track.id} style={{ marginTop: 28 }}>
-          <h2 style={{ fontFamily: 'var(--font-display)' }}>{track.title}</h2>
+          <h2 className="page-title" style={{ fontSize: '1.2rem', marginTop: 8 }}>
+            {track.title}
+          </h2>
           <p>{track.summary}</p>
           <div className="grid-2">
             {modulesForTrack(track.id as TrackId).map((mod) => {
