@@ -39,7 +39,7 @@ export function Shell() {
       <a className="skip" href="#contenu">
         Aller au contenu
       </a>
-      <header className="site-header">
+      <header className="site-header glass">
         <button
           className="icon-btn menu-btn"
           type="button"
@@ -69,7 +69,8 @@ export function Shell() {
       </header>
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} />
       <div className="layout">
-        <aside className={`sidebar${menu ? ' open' : ''}`}>
+        <aside className={`sidebar glass${menu ? ' open' : ''}`}>
+          <div className="nav-spacer" aria-hidden="true" />
           <div className="sidebar-pages">
             <NavLink to="/parcours">Parcours</NavLink>
             <NavLink to="/glossaire">Glossaire</NavLink>

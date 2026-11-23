@@ -87,8 +87,8 @@ export default function PlaygroundPage() {
 
   return (
     <div className="wide">
-      <div className="kicker">Sandbox</div>
-      <h1 style={{ fontFamily: 'var(--font-display)' }}>Playground Lua</h1>
+      <p className="kicker">Sandbox</p>
+      <h1 className="page-title">Playground Lua</h1>
       <p>
         VM Lua (WebAssembly) dans le navigateur. Pas d’os.execute, pas de natives FiveM,
         pas d’instances Roblox. Coupe les boucles infinies au bout de 2,5 s.
@@ -121,7 +121,7 @@ export default function PlaygroundPage() {
             </button>
           </div>
         </div>
-        <pre className={err ? 'output err' : 'output'} style={{ minHeight: 360, borderRadius: 14, border: '1px solid var(--line)' }}>
+        <pre className={err ? 'output err' : 'output'} style={{ minHeight: 360, borderRadius: 8, border: '0.5px solid var(--hairline)' }}>
           {out}
         </pre>
       </div>
