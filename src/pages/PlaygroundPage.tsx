@@ -121,7 +121,7 @@ export default function PlaygroundPage() {
             </button>
           </div>
         </div>
-        <pre className={err ? 'output err' : 'output'} style={{ minHeight: 360, borderRadius: 8, border: '0.5px solid var(--hairline)' }}>
+        <pre className={err ? 'output err' : 'output'} style={{ minHeight: 360, borderRadius: 10, border: '1px solid var(--line)' }}>
           {out}
         </pre>
       </div>
